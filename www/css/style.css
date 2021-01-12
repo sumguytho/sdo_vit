@@ -1,0 +1,106 @@
+/*
+#6A94D4 - navbar
+#E1EAF6 - input
+#6A94D4 - submit form link
+#F4F4F4 - фон для страницы досок и чата
+*/
+
+body{
+	background-color: #fff;
+}
+
+nav a{
+	font-size: 30px !important;
+}
+
+.submitForm{
+	text-align: center;
+	margin-top: 25px;
+}
+
+.submitForm h1{
+	margin-bottom: 25px;
+}
+
+.submitForm a{
+	color: #6A94D4;
+	font-size: 17px;
+}
+
+.submitForm input:not([type=checkbox]):not([type=submit]){
+	margin: 10px auto 10px auto;
+	display: block;
+	width: 300px;
+	background-color: #E1EAF6;
+	border: 10px solid #E1EAF6;
+	border-radius: 40px;
+	font-size: 17px;
+	padding: 0px 15px 0px 15px;
+}
+
+.submitForm input:not([type=checkbox]):not([type=submit]):last-child{
+  	margin-bottom: 0px;
+}
+
+.submitForm input[type=submit], .submitForm button{
+	display: block;
+	margin: 40px auto 40px auto;
+	width: 230px;
+}
+
+.submitForm input[type=checkbox]{
+	box-shadow: 0 0 3pt 2pt #6A94D4;
+	cursor: pointer;
+}
+
+.submitForm label{
+	font-size: 17px;
+	padding-left: 5px;
+	padding-right: 25px;
+}
+
+.blueBtn{
+	background-color: #6A94D4;
+	border: 10px solid #6A94D4;
+	color: white;
+	font-size: 20px;
+	border-radius: 40px;
+	padding: 0px 10px 0px 10px;
+}
+
+.whiteBtn{
+	background-color: #fff;
+	border: 2px solid #6A94D4;
+	color: black;
+	font-size: 20px;
+	border-radius: 40px;
+	padding: 8px 10px 8px 10px;
+}
+
+.blueLine{
+	width: 30%;
+	min-width: 300px;
+	background-color: #E1EAF6;
+	border: 2px solid #E1EAF6;
+	border-radius: 2px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.colheader{
+	width: 100%;
+	background-color: #6A94D4;
+	height: 100px;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+}
+
+.bleak{
+	opacity: 0.6;
+}
+
+.colheader *{
+	position: relative;
+	top: 30%;
+}
