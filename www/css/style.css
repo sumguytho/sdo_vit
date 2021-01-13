@@ -3,10 +3,64 @@
 #E1EAF6 - input
 #6A94D4 - submit form link
 #F4F4F4 - фон для страницы досок и чата
+#C4C4C4 - границы для списка досок
 */
 
 body{
 	background-color: #fff;
+}
+
+.alt-bg{
+	background-color: #F4F4F4;
+}
+
+.board-header{
+	margin: 20px auto 20px auto;
+	width: 300px;
+	background-color: #E1EAF6;
+	border: 10px solid #E1EAF6;
+	border-radius: 40px;
+	font-size: 20px;
+	text-align: center;
+	padding: 0px 15px 0px 15px;
+}
+
+/*
+.board-list .board-item:first-child{
+	border-top: 2px solid #C4C4C4;
+}
+*/
+
+.board-item{
+	margin-bottom: 10px;
+	padding-bottom: 10px; 
+	border-bottom: 2px solid #C4C4C4;
+	font-size: 18px;
+	text-align: center;
+}
+
+.board-content{
+	background-color: #fff;
+	min-height: 350px;
+	overflow: auto;
+}
+
+.board-entry{
+	margin: 15px;
+	padding: 15px;
+	border: 1px solid #6A94D4;
+	border-radius: 30px;
+	font-size: 15px;
+	text-align: center;
+}
+
+.board-entry p{
+	margin: auto;
+}
+
+.board-entry p img{
+	margin-left: 40px;
+	width: 20px;
 }
 
 nav a{
