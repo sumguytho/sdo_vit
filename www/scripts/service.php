@@ -123,7 +123,7 @@ function getUserInfo($logUser)
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0){  
-    	$userInfo= mysqli_fetch_assoc($result);
+    	$userInfo = mysqli_fetch_assoc($result);
     }
     else {
       $userInfo=null;
@@ -142,7 +142,37 @@ function saveUserInfo($userInfo)
     $conn = connect_db($db_param);
     if ($conn != null) {
         $query = "call addUser(\"{$userInfo["name"]}\", \"{$userInfo["surname"]}\", \"{$userInfo["middlename"]}\", \"{$userInfo["birthdate"]}\", \"{$userInfo["idcard"]}\", \"{$userInfo["mail"]}\", \"{$userInfo["pass"]}\", \"{$userInfo["login"]}\", \"2\", \"{$userInfo["groupid"]}\")";
-        return mysqli_query($conn, $query);
+        $result = mysqli_query($conn, $query);
+        
+        if($result){
+            $responce = $result->fetch_assoc();
+            mysqli_free_result($result);
+            mysqli_close($conn);
+            return $responce['res'];
+        }
+        else mysqli_close($conn);
+    }
+    return false;
+}
+
+
+function getDeskList($userInfo){
+    global $db_param;
+
+    $conn = connect_db($db_param);
+    if ($conn != null) {
+        $query = "call getDesks(\"{$userInfo["idUser"]}\", \"{$userInfo["groupId"]}\")";
+        $result = mysqli_query($conn, $query);
+        
+        if($result){
+            $resarr = array();
+            while($row = $result->fetch_assoc()) array_push($resarr, $row);
+
+            mysqli_free_result($result);
+            mysqli_close($conn);
+            return $resarr;
+        }
+        else mysqli_close($conn);
     }
     return false;
 }

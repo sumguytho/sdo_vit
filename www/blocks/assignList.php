@@ -7,7 +7,9 @@
 					<p>Открытые</p>
 				</div>
 				<div class="board-content">
-					
+					<div class="board-entry">
+						<p>Лабораторная работа №1 <img src="imgs/direction.png" hidden></p>
+					</div>
 				</div>
 			</div>
 			<div class="col-4">
@@ -15,9 +17,7 @@
 					<p>Сданы</p>
 				</div>
 				<div class="board-content">
-					<div class="board-entry">
-						<p>Лабораторная работа №1 <img src="imgs/direction.png"></p>
-					</div>
+					
 				</div>
 			</div>
 			<div class="col-4">
@@ -25,12 +25,7 @@
 					<p>Оценены</p>
 				</div>
 				<div class="board-content">
-					<div class="board-entry">
-						<p>Лабораторная работа №2 <img src="imgs/direction.png"></p>
-					</div>
-					<div class="board-entry">
-						<p>Лабораторная работа №3 <img src="imgs/direction.png"></p>
-					</div>
+					
 				</div>
 			</div>
 		</div>

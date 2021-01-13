@@ -37,6 +37,7 @@ body{
 	border-bottom: 2px solid #C4C4C4;
 	font-size: 18px;
 	text-align: center;
+	cursor: pointer;
 }
 
 .board-content{

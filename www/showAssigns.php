@@ -6,15 +6,15 @@
 <html>
 <head>
   <? 
-  	$pageTitle = "СДО ВИТ просмотр досок";
+  	$pageTitle = "СДО ВИТ просмотр заданий доски";
   	require_once("blocks/htmlHeader.php");
   ?>
-  <script type="text/javascript" src="js/boardOpen.js"></script>
 </head>
 <body class="alt-bg">
 <?
 	include("blocks/navbar.php");
-	include("blocks/boardList.php");
+	if(isset($_GET['id']))
+		include("blocks/assignList.php");
 ?>	
 </body>
 </html>
