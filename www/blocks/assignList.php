@@ -2,10 +2,15 @@
 <script>
 
     var tasks;
+    var answers;
     var currentTaskIndex;
+
+
 
     function openTask(i) {
 
+        $('#answers').text('')
+        getAnswers(tasks[i].taskId)
         currentTaskIndex = i;
 
         var date = new Date(tasks[i].date.replace(/-/g,"/"));
@@ -20,6 +25,64 @@
         $('#openDesks').text('')
         for(let i = 0; i<data.length;i++)
             $('#openDesks').append('<p onclick="openTask('+i+')">'+data[i].name +' <img src="imgs/direction.png" hidden></p>')
+
+    }
+
+    function fillAnswers(data){
+
+        $('#answers').text('')
+        answers = data;
+        for(let i = 0; i<data.length;i++)
+            $('#answers').append('<p onclick="openAnswer('+i+')">'+ data[i].name + ' Ответ:'+ data[i].answer + '<img src="imgs/direction.png" hidden></p>')
+
+    }
+
+
+    function getAnswers(id){
+        $.ajax(
+            '/api/getAnswers.php',
+            {
+                type: "POST",
+                data: {
+                    "id": id,
+
+
+                },
+                success: function (data) {
+                    fillAnswers(JSON.parse(data));
+                },
+                error: function () {
+                    alert('There was some error performing the AJAX call!');
+                }
+            }
+        );
+
+
+    }
+
+    function sendAnswer(){
+        $('#taskModal').modal('toggle')
+
+        $.ajax(
+            '/api/sendAnswer.php',
+            {
+                type: "POST",
+                data: {
+                    "taskId": tasks[currentTaskIndex].taskId,
+                    "answer": $('#taskAnsView').val()
+
+
+                },
+                success: function (data) {
+                    alert('Ответ успешно загружен')
+                    $('#taskAnsView').val('')
+                },
+                error: function () {
+                    alert('There was some error performing the AJAX call!');
+                }
+            }
+        );
+
 
     }
 
@@ -165,8 +228,15 @@
             <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Описание задания" id="taskDeskView" readonly></textarea>
             <input class="col-5 align-self-center" type="text" id="taskDateView" readonly>
 
+            <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Ответ" id="taskAnsView"></textarea>
+
+            Ответы
+            <div class="board-entry" id="answers">
+
+            </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick=>Добавить ответ</button>
+                <button type="button" class="btn btn-primary" onclick=sendAnswer()>Добавить ответ</button>
             </div>
         </div>
     </div>

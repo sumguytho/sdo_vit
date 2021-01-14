@@ -17,6 +17,7 @@
       if($userInfo["permissions"] == '0'){
         $optionarr['Пользователи'] = 'addUsers.php';
         $optionarr['Группы'] = 'groups.php';
+        $optionarr['Доски'] = 'showBoards.php';
       }
       else{
         $optionarr['Доски'] = 'showBoards.php';

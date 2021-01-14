@@ -1,3 +1,3 @@
 <?
-	include("register.php");
+	include("login.php");
 ?>

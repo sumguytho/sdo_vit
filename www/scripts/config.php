@@ -5,8 +5,8 @@ if ( !ini_get( 'display_errors' ) ) {
 }
 ini_set( 'log_errors', 0 );
 
-$SITE_PATH="/localhost";
-$FULL_SITE_PATH="http://localhost";
+$SITE_PATH="/d439b46f7280.ngrok.io";
+$FULL_SITE_PATH="http://d439b46f7280.ngrok.io";
 $LOCAL_PATH=$_SERVER["DOCUMENT_ROOT"];
 
 $db_param=array();
