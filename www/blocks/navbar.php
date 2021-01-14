@@ -1,5 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6A94D4">
-  <a style="padding-left: 150px;" class="navbar-brand" href="/index.php">СДО ВИТ</a>
+  <a style="padding-left: 150px;" class="navbar-brand" href=<?
+
+  if(isset($userInfo) && $userInfo["permissions"] == '2') {
+      echo "/index.php";
+  } else {
+      echo "/chats.php";
+  }
+  ?>
+  >СДО ВИТ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,11 +16,11 @@
     if (isset($userInfo))
       if($userInfo["permissions"] == '0'){
         $optionarr['Пользователи'] = 'addUsers.php';
-        $optionarr['Группы'] = '#';
+        $optionarr['Группы'] = 'groups.php';
       }
       else{
         $optionarr['Доски'] = 'showBoards.php';
-        $optionarr['Чаты'] = '#';
+        $optionarr['Чаты'] = 'chats.php';
       }
   ?>
   <div class="collapse navbar-collapse" id="navbarContent">

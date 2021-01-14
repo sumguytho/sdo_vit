@@ -5,13 +5,13 @@ if ( !ini_get( 'display_errors' ) ) {
 }
 ini_set( 'log_errors', 0 );
 
-$SITE_PATH="/kposite";
-$FULL_SITE_PATH="http://kposite";
+$SITE_PATH="/localhost";
+$FULL_SITE_PATH="http://localhost";
 $LOCAL_PATH=$_SERVER["DOCUMENT_ROOT"];
 
 $db_param=array();
 $db_param["server"]="localhost";
 $db_param["base"]="sdo_vit";
 $db_param["user"]="root";
-$db_param["pass"]="";
+$db_param["pass"]="1234";
 ?>

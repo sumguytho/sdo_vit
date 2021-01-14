@@ -12,9 +12,10 @@
 					</div>
 					<div class="board-list">
 						<? if(is_array($boardList))
+
 							foreach($boardList as $boardItem){ ?>
 								<div class="board-item">
-									<a hidden><? echo $boardItem['deskId'] ?></a>
+									<a hidden><? echo $boardItem['deskId'].'&name='.$boardItem['name']; ?></a>
 									<? echo $boardItem['name'] ?>
 								</div>
 						<? } ?>

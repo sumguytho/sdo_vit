@@ -13,7 +13,7 @@ include("scripts/config.php");
 <body>
 <?
 	include("blocks/navbar.php");
-	include("blocks/userList.php");
+	include("blocks/chatContent.php");
 ?>	
 </body>
 </html>

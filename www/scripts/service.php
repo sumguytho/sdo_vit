@@ -90,6 +90,7 @@ function checkLogInfo($log, $pas)
         return $status;
     }
     $conn = connect_db($db_param);
+
     if ($conn) {
         $query = "call authUser(\"$log\", \"$pas\", \"$paramtype\")";
         $result = mysqli_query($conn, $query);
