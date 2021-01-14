@@ -17,12 +17,14 @@
 
     function fillDesks(data){
         tasks = data;
+        $('#openDesks').text('')
         for(let i = 0; i<data.length;i++)
             $('#openDesks').append('<p onclick="openTask('+i+')">'+data[i].name +' <img src="imgs/direction.png" hidden></p>')
 
     }
 
     function addTask(){
+        $('#exampleModal').modal('toggle')
         $.ajax(
             '/api/addTask.php',
             {
@@ -36,6 +38,23 @@
 
                 },
                 success: function () {
+                    $.ajax(
+                        '/api/getAllWorks.php',
+                        {
+                            type: "POST",
+                            data: {
+                                "deskId": <? echo $_GET['id']?>,
+
+
+                            },
+                            success: function (data) {
+                                fillDesks(JSON.parse(data));
+                            },
+                            error: function () {
+                                alert('There was some error performing the AJAX call!');
+                            }
+                        }
+                    );
 
                 },
                 error: function () {
