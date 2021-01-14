@@ -1,9 +1,24 @@
 
 <script>
 
+    var tasks;
+    var currentTaskIndex;
+
+    function openTask(i) {
+
+        currentTaskIndex = i;
+
+        var date = new Date(tasks[i].date.replace(/-/g,"/"));
+        $('#taskDateView').val(date)
+        $('#taskNameView').val(tasks[i].name)
+        $('#taskDeskView').val(tasks[i].description)
+        $('#taskModal').modal('show')
+    }
+
     function fillDesks(data){
+        tasks = data;
         for(let i = 0; i<data.length;i++)
-            $('#openDesks').append('<p>'+data[i].name +' <img src="imgs/direction.png" hidden></p>')
+            $('#openDesks').append('<p onclick="openTask('+i+')">'+data[i].name +' <img src="imgs/direction.png" hidden></p>')
 
     }
 
@@ -14,30 +29,14 @@
                 type: "POST",
                 data: {
                     "deskId": <? echo $_GET['id']?>,
-                    "description": $('#taskDesk'),
-                    "name": $('#taskName'),
-                    "date": $('#taskDate'),
+                    "description": $('#taskDesk').val(),
+                    "name": $('#taskName').val(),
+                    "date": $('#taskDate').val(),
 
 
                 },
-                success: function (data) {
-                    $.ajax(
-                        '/api/getAllWorks.php',
-                        {
-                            type: "POST",
-                            data: {
-                                "deskId": <? echo $_GET['id']?>,
+                success: function () {
 
-
-                            },
-                            success: function (data) {
-                                fillDesks(JSON.parse(data));
-                            },
-                            error: function () {
-                                alert('There was some error performing the AJAX call!');
-                            }
-                        }
-                    );
                 },
                 error: function () {
                     alert('There was some error performing the AJAX call!');
@@ -111,7 +110,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal add-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -124,11 +123,31 @@
             <input class="col-5 align-self-center" type="text" placeholder="Название задания" id="taskName">
             <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Описание задания" id="taskDesk"></textarea>
             <input class="col-5 align-self-center" type="date" id="taskDate">
-            <div class="modal-body" id="usersList">
 
-            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" onclick=addTask()>Создать</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal view-->
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <input class="col-5 align-self-center" type="text" placeholder="Название задания" id="taskNameView" value readonly>
+            <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Описание задания" id="taskDeskView" readonly></textarea>
+            <input class="col-5 align-self-center" type="text" id="taskDateView" readonly>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick=>Добавить ответ</button>
             </div>
         </div>
     </div>
