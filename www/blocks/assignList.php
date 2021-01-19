@@ -56,18 +56,18 @@
         for(let i = 0; i<data.length;i++) {
 
             if(data[i].approve == 1) {
-                $('#answers').append('<p id="answer" class="approve" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ:' + data[i].answer + '' + '</p>')
+                $('#answers').append('<p id="answer" class="approve" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ: ' + data[i].answer + '' + '</p>')
 
             }else {
 
                 if(permissions == 0) {
 
-                    $('#answers').append('<p id="answer" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ:' + data[i].answer + '' +
+                    $('#answers').append('<p id="answer" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ: ' + data[i].answer + '' +
                         '<button onclick=approve(' + data[i].id + ') type="button" class="btn btn-primary" id="answerButton">\n' +
                         '                        Зачтёт\n' +
                         '                    </button> </p>')
                 } else {
-                    $('#answers').append('<p id="answer" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ:' + data[i].answer + '</p>')
+                    $('#answers').append('<p id="answer" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ: ' + data[i].answer + '</p>')
                 }
             }
         }
@@ -270,13 +270,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input class="col-5 align-self-center" type="text" placeholder="Название задания" id="taskNameView" value readonly>
+            <input class="col-7 offset-2 align-self-center" type="text" placeholder="Название задания" id="taskNameView" value readonly>
+            <div id="wtf">Описание:</div>
             <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Описание задания" id="taskDeskView" readonly></textarea>
             <input class="col-5 align-self-center" type="text" id="taskDateView" readonly>
 
             <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Ответ" id="taskAnsView"></textarea>
 
-            Ответы
+            <div id="wtf">Ответы:</div>
             <div class="board-entry" id="answers">
 
             </div>

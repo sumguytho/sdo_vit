@@ -229,3 +229,32 @@ input[type=text] {
 .approve {
 	color: #25b142;
 }
+
+textarea {
+	margin-top: 20px;
+	border: none;
+	outline:none;
+	resize: none;
+}
+
+#wtf {
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+#taskDateView {
+	margin-top: 20px;
+}
+
+#taskNameView {
+	border: none;
+	font-size: 20px;
+	color: black;
+	width: 100%;
+}
+
+#chatWindowName {
+	color: #6A94D4;
+	font-size: 25px;
+
+}

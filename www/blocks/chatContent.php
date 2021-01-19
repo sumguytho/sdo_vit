@@ -34,11 +34,11 @@
         if(lastChatData.toString().hashCode()!=data.toString().hashCode() || data[0].chatName!=lastChatName){
             $('#chatWindow').text('');
             lastChatName = data[0].chatName;
-            $('#chatWindowName').text("Чат: "+data[0].chatName)
+            $('#chatWindowName').text(data[0].chatName)
             lastChatData = data.toString().hashCode();
             data = data.sort((a,b)=> new Date(a.date) - new Date(b.date))
             for(let i = 0; i<data.length;i++)
-                $('#chatWindow').append('<div class="row"><div class="col-12"> '+data[i].date +' - '+data[i].name +' '+ data[i].surname+': '+ data[i].content+ '</div><div>')
+                $('#chatWindow').append('<div class="row"><div class="col-12"> <i>'+data[i].date +' - '+data[i].name +' '+ data[i].surname+':</i> '+ data[i].content+ '</div><div>')
         }
     }
 
