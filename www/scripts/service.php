@@ -101,7 +101,7 @@ function checkLogInfo($log, $pas)
                  $status["logStatus"] = true;
         else {
             $status["logStatus"] = false;
-            $status["status_string"] = "Неверный пароль";
+            $status["status_string"] = "Неверные логин или пароль";
         }
         mysqli_free_result($result);
         mysqli_close($conn);
