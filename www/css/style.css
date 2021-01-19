@@ -244,6 +244,7 @@ textarea {
 
 #taskDateView {
 	margin-top: 20px;
+
 }
 
 #taskNameView {
@@ -257,4 +258,12 @@ textarea {
 	color: #6A94D4;
 	font-size: 25px;
 
+}
+
+#taskAnsView {
+	border: #5a6268 solid 2px;
+}
+
+#deskName {
+	margin-top: 20px;
 }
