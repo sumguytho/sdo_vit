@@ -26,6 +26,7 @@ $conn = connect_db($db_param);
 
 
     function selectGroup(name) {
+        $('#bleak').removeClass('bleak')
 
         $.ajax(
             '/api/getGroupStudents.php',
@@ -56,7 +57,7 @@ $conn = connect_db($db_param);
 	<div class="col-8 offset-2">
 		<h1 style="margin: 30px 0 50px 0; text-align: center;">Группы</h1>
 		<div class="row">
-			<div class="col-4">
+			<div class="col-4 offset-2">
 				<div class="colheader">
 					<p>Группа</p>
 				</div>
@@ -72,15 +73,10 @@ $conn = connect_db($db_param);
                 </div>
 			</div>
 			<div class="col-4">
-				<div class="colheader bleak">
+				<div class="colheader bleak" id="bleak">
 					<p>Состав</p>
 				</div>
                 <div id="sostav"></div>
-			</div>
-			<div class="col-4">
-				<div class="colheader">
-					<p>Пользователи</p>
-				</div>
 			</div>
 		</div>
 

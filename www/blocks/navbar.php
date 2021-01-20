@@ -26,13 +26,13 @@
   ?>
   <div class="collapse navbar-collapse" id="navbarContent">
     <? if (sizeof($optionarr) != 0) { ?>
-    <ul class="navbar-nav offset-4">
+    <ul class="navbar-nav">
       <? foreach ($optionarr as $key => $value) {?>
       <li class="nav-item">
         <a class="nav-link" href="<? echo $value; ?>"><? echo $key; ?></a>
       </li>
       <? } ?>
-      <li class="nav-item offset-5">
+      <li class="nav-item">
         <a class="nav-link" href="/actions/logout.php">Выйти</a>
       </li>
     </ul>

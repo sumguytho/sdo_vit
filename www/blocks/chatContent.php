@@ -34,11 +34,11 @@
         if(lastChatData.toString().hashCode()!=data.toString().hashCode() || data[0].chatName!=lastChatName){
             $('#chatWindow').text('');
             lastChatName = data[0].chatName;
-            $('#chatWindowName').text("Чат: "+data[0].chatName)
+            $('#chatWindowName').text(data[0].chatName)
             lastChatData = data.toString().hashCode();
             data = data.sort((a,b)=> new Date(a.date) - new Date(b.date))
             for(let i = 0; i<data.length;i++)
-                $('#chatWindow').append('<div class="row"><div class="col-12"> '+data[i].date +' - '+data[i].name +' '+ data[i].surname+': '+ data[i].content+ '</div><div>')
+                $('#chatWindow').append('<div class="row"><div class="col-12"> <i>'+data[i].date +' - '+data[i].name +' '+ data[i].surname+':</i> '+ data[i].content+ '</div><div>')
         }
     }
 
@@ -69,7 +69,8 @@
     }
 
     function sendMessage(){
-        message = $('#message').val();
+        message = $('#message').val()
+        $('#message').val('')
 
         $.ajax(
 
@@ -94,8 +95,8 @@
         $('#chatsList').text('')
         for(let i = 0; i<data.length;i++)
             $('#chatsList').append('' +
-                '<div class="row" onclick=selectChat('+data[i].chatId+')>' +
-                    '<div class="col-4"> '
+                '<div class="row" onclick=selectChat('+data[i].chatId+') id="chatName">' +
+                    '<div class="col-12"> '
                         +data[i].name+ '' +
                     '</div>' +
                 '</div>')
@@ -188,35 +189,40 @@
 <div class="container-fluid">
 
 
+    <div class="container" id="chat">
 
 
-
-    <div class="row" >
-
-    </div>
-    <div class="row" id="chatWindowName">Выберите чат из списка </div>
-    <div class="row" >
-        <div class="col-6 bg-light my-2" id="chatWindow">
-
-
-        </div>
-
-        <div class="col-1 my-2" ></div>
-        <div class="col-4 bg-light my-2" >
-            <div id="chatsList">
+        <div id="chatWrapper">
+            <div class="row" >
 
             </div>
+            <div class="row" id="chatWindowName">Выберите чат из списка </div>
+            <div class="row" >
+                <div class="col-6 bg-light my-2" id="chatWindow">
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Создать чат
-            </button>
+
+                </div>
+
+                <div class="col-1 my-2" ></div>
+                <div class="col-4 bg-light my-2 " >
+                    <div id="chatsList">
+
+                    </div>
+
+                    <div id="chatListButton">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >
+                        Создать чат
+                    </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <input type="text" placeholder="Введите сообщение" id="message">
+                <button type="button" class="btn btn-primary" onclick=sendMessage() id="messageButton">
+                    Отправить
+                </button>
+            </div>
         </div>
-    </div>
-    <div class="row" >
-        <input type="text" placeholder="Введите сообщение" id="message">
-        <button type="button" class="btn btn-primary" onclick=sendMessage()>
-            Отправить
-        </button>
     </div>
 </div>
 

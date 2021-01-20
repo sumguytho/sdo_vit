@@ -1,27 +1,75 @@
 
-<?
-global $db_param;
-$conn = connect_db($db_param);
-
-    if ($conn) {
-    $result = mysqli_query($conn, 'SELECT * FROM user');
-
-
-
-
-
-    mysqli_close($conn);
-
-    }
-?>
 <script type="text/javascript">
-    $(function() {
 
-        $('#draggable').each().draggable({
+    function approve(id) {
+        $.ajax(
+            '/api/approveUser.php',
+            {
+                type: "POST",
+                data: {
+                    "id": id,
 
-        });
 
-    });
+                },
+                success: function (data) {
+                    $.ajax(
+                        '/api/getAllUsers.php',
+                        {
+
+
+                            success: function (data) {
+                                fillUsers(JSON.parse(data));
+                            },
+                            error: function () {
+                                alert('There was some error performing the AJAX call!');
+                            }
+                        }
+                    );
+                },
+                error: function () {
+                    alert('There was some error performing the AJAX call!');
+                }
+            }
+        );
+    }
+
+    function fillUsers(data) {
+
+        $('#prepods').text('')
+        $('#students').text('')
+        $('#zay').text('')
+
+            for(let i = 0; i<data.length;i++){
+
+
+                if(data[i].permissions == '0')
+                    $('#prepods').append('<li onclick=approve('+data[i].idUser+') id="draggable"'+i+' value="'+data[i].idUser+'" class="list-group-item"> '+data[i].name +' '+ data[i].surname+ '</li>')
+
+                if(data[i].permissions == '1')
+                    $('#students').append('<li onclick=approve('+data[i].idUser+') id="draggable"'+i+' value="'+data[i].idUser+'" class="list-group-item"> '+data[i].name +' '+ data[i].surname+ '</li>')
+
+                if(data[i].permissions == '2')
+                    $('#zay').append('<li onclick=approve('+data[i].idUser+') id="draggable"'+i+' value="'+data[i].idUser+'" class="list-group-item"> '+data[i].name +' '+ data[i].surname+ '</li>')
+
+            }
+    }
+
+
+
+
+    $.ajax(
+        '/api/getAllUsers.php',
+        {
+
+
+            success: function (data) {
+                fillUsers(JSON.parse(data));
+            },
+            error: function () {
+                alert('There was some error performing the AJAX call!');
+            }
+        }
+    );
 </script>
 
 <div class="container-fluid">
@@ -34,7 +82,7 @@ $conn = connect_db($db_param);
 				</div>
 			</div>
 			<div class="col-4">
-				<div class="colheader bleak">
+				<div class="colheader">
 					<p>Заявки</p>
 				</div>
 			</div>
@@ -46,16 +94,13 @@ $conn = connect_db($db_param);
 		</div>
 
         <div class="row">
-        <div class="col-4">
-        <? while ($row = $result->fetch_assoc()) {
-            echo '<li id="draggable" class="list-group-item">';
-            echo $row['name'].' ';
-            echo $row['surname'];
-            echo '</li>';
+        <div class="col-4" id="prepods">
 
-        }
-        ?>
         </div>
+            <div class="col-4" id="zay">
+            </div>
+            <div class="col-4" id="students">
+            </div>
         </div>
 	</div>
 </div>

@@ -7,6 +7,26 @@
 
 
 
+
+    function approve(id) {
+        $.ajax(
+            '/api/approveAnswer.php',
+            {
+                type: "POST",
+                data: {
+                    "id": id,
+
+                },
+                success: function (data) {
+                    getAnswers(tasks[currentTaskIndex].taskId)
+                },
+                error: function () {
+                    alert('There was some error performing the AJAX call!');
+                }
+            }
+        );
+    }
+
     function openTask(i) {
 
         $('#answers').text('')
@@ -24,7 +44,7 @@
         tasks = data;
         $('#openDesks').text('')
         for(let i = 0; i<data.length;i++)
-            $('#openDesks').append('<p onclick="openTask('+i+')">'+data[i].name +' <img src="imgs/direction.png" hidden></p>')
+            $('#openDesks').append('<li class="list-group-item" onclick="openTask('+i+')">'+data[i].name +' </li>')
 
     }
 
@@ -32,8 +52,25 @@
 
         $('#answers').text('')
         answers = data;
-        for(let i = 0; i<data.length;i++)
-            $('#answers').append('<p onclick="openAnswer('+i+')">'+ data[i].name + ' Ответ:'+ data[i].answer + '<img src="imgs/direction.png" hidden></p>')
+        var permissions = <? if(isset($userInfo)) echo $userInfo['permissions']; ?>;
+        for(let i = 0; i<data.length;i++) {
+
+            if(data[i].approve == 1) {
+                $('#answers').append('<p id="answer" class="approve" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ: ' + data[i].answer + '' + '</p>')
+
+            }else {
+
+                if(permissions == 0) {
+
+                    $('#answers').append('<p id="answer" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ: ' + data[i].answer + '' +
+                        '<button onclick=approve(' + data[i].id + ') type="button" class="btn btn-primary" id="answerButton">\n' +
+                        '                        Зачтёт\n' +
+                        '                    </button> <select><option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>5</option> </select></p>')
+                } else {
+                    $('#answers').append('<p id="answer" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ: ' + data[i].answer + '</p>')
+                }
+            }
+        }
 
     }
 
@@ -165,9 +202,18 @@
 
 					</div>
 
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+                    <?
+                    if(isset($userInfo) && $userInfo['permissions']==0)
+                    echo '
+                    <div id="taskAdd"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Создать задание
                     </button>
+                    </div>'
+
+                    ?>
+
+
 				</div>
 			</div>
 			<div class="col-4">
@@ -224,13 +270,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <input class="col-5 align-self-center" type="text" placeholder="Название задания" id="taskNameView" value readonly>
+            <input class="col-7 offset-2 align-self-center" type="text" placeholder="Название задания" id="taskNameView" value readonly>
+            <div id="wtf">Описание:</div>
             <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Описание задания" id="taskDeskView" readonly></textarea>
             <input class="col-5 align-self-center" type="text" id="taskDateView" readonly>
 
+            <div id="wtf">Ввести ответ:</div>
             <textarea class="col-5 align-self-center" cols="40" rows="5" placeholder="Ответ" id="taskAnsView"></textarea>
 
-            Ответы
+            <div id="wtf">Ответы:</div>
             <div class="board-entry" id="answers">
 
             </div>
