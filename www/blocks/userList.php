@@ -42,13 +42,13 @@
             for(let i = 0; i<data.length;i++){
 
 
-                if(data[i].permissions == '0')
+                if(data[i].permissions == '1')
                     $('#prepods').append('<li onclick=approve('+data[i].idUser+') id="draggable"'+i+' value="'+data[i].idUser+'" class="list-group-item"> '+data[i].name +' '+ data[i].surname+ '</li>')
 
-                if(data[i].permissions == '1')
+                if(data[i].permissions == '2')
                     $('#students').append('<li onclick=approve('+data[i].idUser+') id="draggable"'+i+' value="'+data[i].idUser+'" class="list-group-item"> '+data[i].name +' '+ data[i].surname+ '</li>')
 
-                if(data[i].permissions == '2')
+                if(data[i].permissions == '3')
                     $('#zay').append('<li onclick=approve('+data[i].idUser+') id="draggable"'+i+' value="'+data[i].idUser+'" class="list-group-item"> '+data[i].name +' '+ data[i].surname+ '</li>')
 
             }

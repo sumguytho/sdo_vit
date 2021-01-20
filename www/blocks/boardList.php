@@ -53,7 +53,7 @@
 						<? } ?>
 
                         <?
-                        if(isset($userInfo) && $userInfo['permissions']==0)
+                        if(isset($userInfo) && $userInfo['permissions']==1)
                             echo '
                     <div id="taskAdd"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Создать доску

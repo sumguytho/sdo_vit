@@ -60,7 +60,7 @@
 
             }else {
 
-                if(permissions == 0) {
+                if(permissions == 1) {
 
                     $('#answers').append('<p id="answer" onclick="openAnswer(' + i + ')">' + data[i].name + ' Ответ: ' + data[i].answer + '' +
                         '<button onclick=approve(' + data[i].id + ') type="button" class="btn btn-primary" id="answerButton">\n' +
@@ -204,7 +204,7 @@
 
 
                     <?
-                    if(isset($userInfo) && $userInfo['permissions']==0)
+                    if(isset($userInfo) && $userInfo['permissions']==1)
                     echo '
                     <div id="taskAdd"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                         Создать задание

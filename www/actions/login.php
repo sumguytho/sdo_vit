@@ -9,7 +9,7 @@ else
 
 if(is_array($logConfirm) && $logConfirm['logStatus'] == true) {
     $_SESSION["logUser"]=$_POST["data"];
-    header("Location: $FULL_SITE_PATH/chats.php");
+    header("Location: $FULL_SITE_PATH/");
 }
 else {
     if(is_array($logConfirm))

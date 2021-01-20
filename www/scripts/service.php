@@ -142,7 +142,7 @@ function saveUserInfo($userInfo)
 
     $conn = connect_db($db_param);
     if ($conn != null) {
-        $query = "call addUser(\"{$userInfo["name"]}\", \"{$userInfo["surname"]}\", \"{$userInfo["middlename"]}\", \"{$userInfo["birthdate"]}\", \"{$userInfo["idcard"]}\", \"{$userInfo["mail"]}\", \"{$userInfo["pass"]}\", \"{$userInfo["login"]}\", \"2\", \"{$userInfo["groupid"]}\")";
+        $query = "call addUser(\"{$userInfo["name"]}\", \"{$userInfo["surname"]}\", \"{$userInfo["middlename"]}\", \"{$userInfo["birthdate"]}\", \"{$userInfo["idcard"]}\", \"{$userInfo["mail"]}\", \"{$userInfo["pass"]}\", \"{$userInfo["login"]}\", \"3\", \"{$userInfo["groupid"]}\")";
         $result = mysqli_query($conn, $query);
         
         if($result){

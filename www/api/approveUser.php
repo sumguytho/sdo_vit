@@ -11,12 +11,16 @@ if ($conn) {
 
 
     $result = mysqli_query($conn, "SELECT permissions FROM user WHERE idUser = '$id'");
-    $a = $result->fetch_row()[0];
+    $a = $result->fetch_row();
+    $a = $a[0];
+    if($a == 1)
+        mysqli_query($conn, "UPDATE user SET permissions = '3' WHERE idUser = '$id'");
+
+    if($a == 3)
+        mysqli_query($conn, "UPDATE user SET permissions = '2' WHERE idUser = '$id'");
+
     if($a == 2)
         mysqli_query($conn, "UPDATE user SET permissions = '1' WHERE idUser = '$id'");
-
-    if($a == 1)
-        mysqli_query($conn, "UPDATE user SET permissions = '2' WHERE idUser = '$id'");
     echo mysqli_error($conn);
 
 

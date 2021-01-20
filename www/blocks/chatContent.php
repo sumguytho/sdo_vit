@@ -17,7 +17,7 @@
         return hash;
     }
 
-    setInterval(timer, 1000);
+    setInterval(timer, 15000);
 
     function timer() {
         selectChat(currentChatId)
