@@ -24,6 +24,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/scripts/service.php");
 	include('test6.php');
 	include('test7.php');
 	include('test8.php');
+	include('test9.php');
 
 	mysqli_close($conn);
 	for($i = 0; $i < count($content); $i++){
